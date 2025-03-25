@@ -1,0 +1,107 @@
+{
+ "name":"Reefscape_auto",
+ "version":1,
+ "type":"Swerve",
+ "variables":{
+  "expressions":{},
+  "poses":{
+   "intake":{
+    "x":{
+     "exp":"1.5131486654281616 m",
+     "val":1.5131486654281616
+    },
+    "y":{
+     "exp":"7.278657913208008 m",
+     "val":7.278657913208008
+    },
+    "heading":{
+     "exp":"-0.9025068868953693 rad",
+     "val":-0.9025068868953692
+    }
+   },
+   "right_score":{
+    "x":{
+     "exp":"3.6281421184539795 m",
+     "val":3.628142118453979
+    },
+    "y":{
+     "exp":"5.089603900909424 m",
+     "val":5.089603900909424
+    },
+    "heading":{
+     "exp":"-0.951484064602857 rad",
+     "val":-0.951484064602857
+    }
+   }
+  }
+ },
+ "config":{
+  "frontLeft":{
+   "x":{
+    "exp":"16 in",
+    "val":0.4064
+   },
+   "y":{
+    "exp":"13.5 in",
+    "val":0.3429
+   }
+  },
+  "backLeft":{
+   "x":{
+    "exp":"-16 in",
+    "val":-0.4064
+   },
+   "y":{
+    "exp":"13.5 in",
+    "val":0.3429
+   }
+  },
+  "mass":{
+   "exp":"120.5 lbs",
+   "val":54.657880585
+  },
+  "inertia":{
+   "exp":"4.48 kg m ^ 2",
+   "val":4.48
+  },
+  "gearing":{
+   "exp":"6.2",
+   "val":6.2
+  },
+  "radius":{
+   "exp":"2 in",
+   "val":0.0508
+  },
+  "vmax":{
+   "exp":"3900 RPM",
+   "val":408.4070449666731
+  },
+  "tmax":{
+   "exp":"1.2 N * m",
+   "val":1.2
+  },
+  "cof":{
+   "exp":"1.5",
+   "val":1.5
+  },
+  "bumper":{
+   "front":{
+    "exp":"18 in",
+    "val":0.4572
+   },
+   "side":{
+    "exp":"16 in",
+    "val":0.4064
+   },
+   "back":{
+    "exp":"18 in",
+    "val":0.4572
+   }
+  },
+  "differentialTrackWidth":{
+   "exp":"22 in",
+   "val":0.5588
+  }
+ },
+ "generationFeatures":[]
+}
