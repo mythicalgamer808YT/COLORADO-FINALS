@@ -1,0 +1,39 @@
+package frc.robot.subsystems;
+
+
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.geometry.Translation2d;
+import frc.robot.Constants;
+
+// public class main() {
+//   // You can test the computed pose with a main() method or through your robot code.
+//     public main() {
+
+//     }
+
+// }
+
+
+// package frc.robot;
+
+// import edu.wpi.first.wpilibj.RobotBase;
+
+public class Main {
+    private Main() {}
+
+    public static void main (String... args) {
+        AprilTagFieldLayout sigma = Constants.PhotonConsts.FIELD_LAYOUT;
+        
+        for(int i = 1; i < 23; i++) {
+            Pose2d tagPosition = sigma.getTagPose(i).get().toPose2d();
+            System.out.println("tag id " + i);
+            System.out.println("tag x " + tagPosition.getX());
+            System.out.println("tag y " + tagPosition.getY());
+            System.out.println("tag degrees " + tagPosition.getRotation().getDegrees());
+            System.out.println();
+
+        }
+    }
+}

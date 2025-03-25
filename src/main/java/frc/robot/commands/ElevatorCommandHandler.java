@@ -4,16 +4,16 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.States.ElevatorStates;
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.InnerElevatorSubsystem;
-import frc.robot.subsystems.PrimaryElevatorSubsystem;
+import frc.robot.subsystems.InnerElevator;
+import frc.robot.subsystems.IntakeArm;
+import frc.robot.subsystems.PrimaryElevator;
 
 public class ElevatorCommandHandler {
-    private final PrimaryElevatorSubsystem primaryElevatorSubsystem;
-    private final InnerElevatorSubsystem innerElevatorSubsystem;
-    private final ArmSubsystem armSubsystem;
+    private final PrimaryElevator primaryElevatorSubsystem;
+    private final InnerElevator innerElevatorSubsystem;
+    private final IntakeArm armSubsystem;
 
-    public ElevatorCommandHandler(PrimaryElevatorSubsystem primaryElevatorSubsystem, InnerElevatorSubsystem innerElevatorSubsystem, ArmSubsystem armSubsystem) {
+    public ElevatorCommandHandler(PrimaryElevator primaryElevatorSubsystem, InnerElevator innerElevatorSubsystem, IntakeArm armSubsystem) {
         this.primaryElevatorSubsystem = primaryElevatorSubsystem;
         this.innerElevatorSubsystem = innerElevatorSubsystem;
         this.armSubsystem = armSubsystem;
@@ -51,4 +51,4 @@ public class ElevatorCommandHandler {
         return innerElevatorSubsystem.getInnerElevatorState();
     }
 }
- 
+//  

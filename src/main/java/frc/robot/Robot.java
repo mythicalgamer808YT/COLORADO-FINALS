@@ -20,6 +20,7 @@ public class Robot extends TimedRobot {
 
   public Robot() {
     m_robotContainer = new RobotContainer();
+    m_robotContainer.resetPidgeon();
   }
 
   @Override
@@ -71,7 +72,6 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-    m_robotContainer.resetDrive();
   }
 
   @Override

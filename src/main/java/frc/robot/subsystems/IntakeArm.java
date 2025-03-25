@@ -3,7 +3,10 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkFlex;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.config.SparkFlexConfig;
 
 import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.controller.PIDController;
@@ -11,12 +14,13 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DutyCycleEncoder;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.lib.util.SparkFlexUtil;
 import frc.robot.Constants;
 import frc.robot.States.ElevatorStates;
 import frc.robot.States.IndexStates;
 
-public class ArmSubsystem extends SubsystemBase {
-    private final TalonFX armMotor;
+public class IntakeArm extends SubsystemBase {
+    private final SparkFlex armMotor;
     private final SparkMax indexingMotor;
     private final DutyCycleEncoder armEncoder;
     private final PIDController armPID; 
@@ -31,8 +35,10 @@ public class ArmSubsystem extends SubsystemBase {
     private boolean override;
     private boolean inBounds; 
 
-    public ArmSubsystem() {
-        armMotor = new TalonFX(Constants.ArmConstants.ARM_MOTOR_ID);
+    private double addSpeed;
+
+    public IntakeArm() {
+        armMotor = new SparkFlex(Constants.ArmConstants.ARM_MOTOR_ID, MotorType.kBrushless);
         armEncoder = new DutyCycleEncoder(3);
         indexingMotor = new SparkMax(Constants.ArmConstants.INDEX_MOTOR_ID, MotorType.kBrushless);
 
@@ -42,10 +48,14 @@ public class ArmSubsystem extends SubsystemBase {
         indexState = IndexStates.STOP;;
         elevatorState = ElevatorStates.STARTING_POSITION;
 
-        armPosition = getArmAngle();;
+        armPosition = getArmAngle();
         armSpeed = 0;
         override = false;
         inBounds = false;
+
+        addSpeed = 0;
+
+        SparkFlexUtil.setSparkFlexBusUsage(armMotor, SparkFlexUtil.Usage.kAll, IdleMode.kBrake, false, false);
     }
 
     @Override
@@ -59,11 +69,15 @@ public class ArmSubsystem extends SubsystemBase {
         } else if(armPosition <= ElevatorStates.MIN.armAngle) {
             armSpeed = 0.1;
             inBounds = false;
-        } else if(!override) {
-            armSpeed = armPID.calculate(armPosition) 
-                + armFeedforward.calculate(Units.degreesToRadians(armPosition), armMotor.getVelocity().getValueAsDouble());
-            inBounds = true;
+        } else {
+            if(!override) {
+                armSpeed = armPID.calculate(armPosition) + 
+                    armFeedforward.calculate(Units.degreesToRadians(armPosition), armMotor.getAbsoluteEncoder().getVelocity());
+                inBounds = true;
+            }
         }
+
+         
 
         armMotor.set(armSpeed);
         setSmartDashboardValues();
@@ -73,6 +87,10 @@ public class ArmSubsystem extends SubsystemBase {
         elevatorState = state;
         armPID.setSetpoint(state.armAngle);
     }
+
+    // public void setAddSpeed(double addSpeed) {
+    //     this.addSpeed = addSpeed;
+    // }
 
     public void setOverride(double armSpeed, boolean override) {
         this.override = override;
@@ -84,7 +102,7 @@ public class ArmSubsystem extends SubsystemBase {
         indexingMotor.set(state.speed);
     }
     
-    public  double getArmAngle() {
+    public double getArmAngle() {
         return Units.rotationsToDegrees(armEncoder.get()) + 33;
     }
 

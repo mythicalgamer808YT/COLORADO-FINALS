@@ -2,13 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.States.IndexStates;
-import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.IntakeArm;
 
 public class IndexCommand {
-    private final ArmSubsystem armSubsystem;
+    private final IntakeArm armSubsystem;
     private IndexStates state;
 
-    public IndexCommand(ArmSubsystem armSubsystem) {
+    public IndexCommand(IntakeArm armSubsystem) {
         this.armSubsystem = armSubsystem;
     }
 

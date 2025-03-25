@@ -8,6 +8,13 @@
       "type": "java",
       "name": "Main",
       "request": "launch",
+      "mainClass": "frc.robot.subsystems.Main",
+      "projectName": "2025-FRC-Reefscape"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
       "mainClass": "frc.robot.Main",
       "projectName": "2025-FRC-Reefscape"
     },

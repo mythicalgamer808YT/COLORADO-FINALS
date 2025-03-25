@@ -5,12 +5,6 @@
     "data": {
       "commands": [
         {
-          "type": "path",
-          "data": {
-            "pathName": "1 coral Straight Auto"
-          }
-        },
-        {
           "type": "sequential",
           "data": {
             "commands": [
@@ -23,7 +17,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 1
                 }
               }
             ]
@@ -32,26 +26,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "New Path"
+            "pathName": "1 coral Straight Auto"
           }
         },
         {
-          "type": "sequential",
+          "type": "named",
           "data": {
-            "commands": [
-              {
-                "type": "wait",
-                "data": {
-                  "waitTime": 2.0
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Score"
-                }
-              }
-            ]
+            "name": "Score"
           }
         }
       ]

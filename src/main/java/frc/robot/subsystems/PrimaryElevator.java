@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.States.ElevatorStates;
 
-public class PrimaryElevatorSubsystem extends SubsystemBase{
+public class PrimaryElevator extends SubsystemBase{
     private final TalonFX leftMotor;
     private final TalonFX rightMotor;
     private final PIDController elevatorPID;
@@ -19,7 +19,9 @@ public class PrimaryElevatorSubsystem extends SubsystemBase{
     private double motorOutput;
     private boolean inBounds;
 
-    public PrimaryElevatorSubsystem(){
+    private double addSpeed;
+
+    public PrimaryElevator(){
         leftMotor = new TalonFX(Constants.PrimaryElevatorConstants.LEFT_ELEVATOR_MOTOR_ID);
         rightMotor = new TalonFX(Constants.PrimaryElevatorConstants.RIGHT_ELEVATOR_MOTOR_ID);
         elevatorPID = new PIDController(Constants.PrimaryElevatorConstants.KP, Constants.PrimaryElevatorConstants.KI, Constants.PrimaryElevatorConstants.KD);
@@ -48,6 +50,10 @@ public class PrimaryElevatorSubsystem extends SubsystemBase{
 
         setElevatorSpeeds(motorOutput);
         setSmartDashboardValues();
+    }
+
+    public void setAddMotor(double add) {
+        addSpeed = add;
     }
 
     public void setPrimaryElevatorState(ElevatorStates state) {
